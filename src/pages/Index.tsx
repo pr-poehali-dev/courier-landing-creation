@@ -228,7 +228,7 @@ const Index = () => {
       <section id="benefits" className="py-20 px-4 bg-muted/30">
         <div className="container mx-auto">
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-12">Преимущества</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto mb-12">
             {[
               { icon: 'Zap', title: 'Быстрое оформление', description: 'Начни работать уже через 24 часа после подачи заявки', color: 'primary' },
               { icon: 'Shield', title: 'Страхование', description: 'Полное страхование от несчастных случаев', color: 'secondary' },
@@ -245,6 +245,59 @@ const Index = () => {
                   <CardTitle className="text-xl">{benefit.title}</CardTitle>
                   <CardDescription className="text-base">{benefit.description}</CardDescription>
                 </CardHeader>
+              </Card>
+            ))}
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto mt-12">
+            {[
+              {
+                emoji: '📅',
+                title: 'График на выбор',
+                description: '1/1, 2/2, 3/3, 5/2, 6/1 или 7/0 и возможность подработки от 4х часов. Можно совмещать с учебой или работой',
+                color: 'from-blue-50 to-blue-100'
+              },
+              {
+                emoji: '🚴',
+                title: 'Разнообразие вакансий',
+                description: 'Авто-курьер, пеший курьер, вело-курьер, электровело-курьер, сборщик заказов',
+                color: 'from-purple-50 to-purple-100'
+              },
+              {
+                emoji: '💰',
+                title: 'Оплачиваемая стажировка',
+                description: 'Еженедельная оплата на карту по четвергам. Оплата с первого дня',
+                color: 'from-green-50 to-green-100'
+              },
+              {
+                emoji: '☔',
+                title: 'Доплата за плохую погоду и тяжелый груз',
+                description: 'Сумма доплаты зависит от веса и габаритов груза в среднем +30₽ в час',
+                color: 'from-indigo-50 to-indigo-100'
+              },
+              {
+                emoji: '📄',
+                title: 'Оформление за 1 день',
+                description: 'Без лишних бумаг, всё быстро и просто. Возможно оформление ОНЛАЙН',
+                color: 'from-pink-50 to-pink-100'
+              },
+              {
+                emoji: '🏢',
+                title: 'Работа рядом с домом',
+                description: 'Удобные локации. Подберем идеальное место для работы',
+                color: 'from-cyan-50 to-cyan-100'
+              }
+            ].map((item, index) => (
+              <Card key={index} className={`border-0 bg-gradient-to-br ${item.color} hover:shadow-xl transition-all hover:scale-[1.02]`}>
+                <CardContent className="pt-6">
+                  <div className="flex gap-4 items-start">
+                    <div className="text-5xl flex-shrink-0">{item.emoji}</div>
+                    <div>
+                      <h3 className="text-xl font-bold mb-3 text-[#FF69B4]">{item.title}</h3>
+                      <p className="text-base leading-relaxed">{item.description}</p>
+                    </div>
+                  </div>
+                </CardContent>
               </Card>
             ))}
           </div>
