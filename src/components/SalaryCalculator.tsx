@@ -85,7 +85,7 @@ const SalaryCalculator = ({ scrollToSection }: SalaryCalculatorProps) => {
                     <p className="font-semibold mb-1">Как увеличить доход?</p>
                     <ul className="space-y-1 text-muted-foreground">
                       <li>• Более 100 доставок — бонус +30₽ к каждой доставке</li>
-                      <li>• Более 200 доставок — бонус +50₽ к каждой доставке</li>
+                      <li>• Выходи на доставку с 07:00 до 08:00 — бонус +30₽ к каждой доставке</li>
                       <li>• Работа в вечерние часы — повышенный коэффициент</li>
                     </ul>
                   </div>
