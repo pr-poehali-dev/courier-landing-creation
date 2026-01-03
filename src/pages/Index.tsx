@@ -5,6 +5,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 import { Slider } from '@/components/ui/slider';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { useToast } from '@/hooks/use-toast';
 import Icon from '@/components/ui/icon';
 
@@ -17,6 +18,7 @@ const Index = () => {
     city: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   
   const calculateEarnings = (deliveriesCount: number) => {
     const baseRate = 250;
@@ -31,6 +33,7 @@ const Index = () => {
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     element?.scrollIntoView({ behavior: 'smooth' });
+    setMobileMenuOpen(false);
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -90,9 +93,41 @@ const Index = () => {
               <button onClick={() => scrollToSection('faq')} className="text-sm font-medium hover:text-primary transition-colors">FAQ</button>
               <button onClick={() => scrollToSection('contacts')} className="text-sm font-medium hover:text-primary transition-colors">Контакты</button>
             </div>
-            <Button onClick={() => scrollToSection('contacts')} className="bg-primary hover:bg-primary/90">
+            <Button onClick={() => scrollToSection('contacts')} className="hidden md:flex bg-primary hover:bg-primary/90">
               Откликнуться
             </Button>
+            <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
+              <SheetTrigger asChild className="md:hidden">
+                <Button variant="ghost" size="icon">
+                  <Icon name="Menu" size={24} />
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="right" className="w-[300px]">
+                <nav className="flex flex-col gap-6 mt-8">
+                  <button onClick={() => scrollToSection('about')} className="text-lg font-medium hover:text-primary transition-colors text-left">
+                    О нас
+                  </button>
+                  <button onClick={() => scrollToSection('benefits')} className="text-lg font-medium hover:text-primary transition-colors text-left">
+                    Преимущества
+                  </button>
+                  <button onClick={() => scrollToSection('requirements')} className="text-lg font-medium hover:text-primary transition-colors text-left">
+                    Требования
+                  </button>
+                  <button onClick={() => scrollToSection('salary')} className="text-lg font-medium hover:text-primary transition-colors text-left">
+                    Зарплата
+                  </button>
+                  <button onClick={() => scrollToSection('faq')} className="text-lg font-medium hover:text-primary transition-colors text-left">
+                    FAQ
+                  </button>
+                  <button onClick={() => scrollToSection('contacts')} className="text-lg font-medium hover:text-primary transition-colors text-left">
+                    Контакты
+                  </button>
+                  <Button onClick={() => scrollToSection('contacts')} className="bg-primary hover:bg-primary/90 w-full mt-4">
+                    Откликнуться
+                  </Button>
+                </nav>
+              </SheetContent>
+            </Sheet>
           </div>
         </div>
       </nav>
@@ -163,6 +198,29 @@ const Index = () => {
                 </p>
               </CardContent>
             </Card>
+            
+            <div className="mt-12 space-y-4">
+              {[
+                { text: 'Выплаты', highlight: 'КАЖДУЮ НЕДЕЛЮ', color: 'text-[#FF69B4]' },
+                { text: 'Доход не зависит от количества заказов — ', highlight: 'оплата за часы', color: 'text-[#FF69B4]' },
+                { text: '', highlight: 'НЕТ', append: ' штрафов', color: 'text-[#FF69B4]' },
+                { text: '', highlight: 'БОНУСЫ', append: ' лучшему сотруднику месяца', color: 'text-[#FF69B4]' },
+                { text: 'Страхование жизни ', highlight: 'БЕСПЛАТНО', append: ' в день оформления', color: 'text-[#FF69B4]' }
+              ].map((item, index) => (
+                <div key={index} className="flex items-center gap-4 p-6 bg-white rounded-2xl border-2 border-[#FFB6C1] hover:border-[#FF69B4] transition-all hover:scale-[1.02]">
+                  <div className="flex-shrink-0">
+                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M8 24L20 36L40 12" stroke="#FF69B4" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </div>
+                  <p className="text-lg md:text-xl">
+                    {item.text}
+                    <span className={`font-bold ${item.color}`}>{item.highlight}</span>
+                    {item.append}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
